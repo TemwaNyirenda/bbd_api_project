@@ -7,6 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Security.Cryptography;
 using UkukhulaAPI.Data.Services;
+using UkukhulaAPI.Controllers.Request;
 
 namespace JWTLoginAuthenticationAuthorization.Controllers
 {
@@ -24,7 +25,7 @@ namespace JWTLoginAuthenticationAuthorization.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult Login([FromBody] LoginVm userLogin)
+        public IActionResult Login([FromBody] LoginVm userLogin)
         {
             var user = Authenticate(userLogin);
             if (user != null)
@@ -34,6 +35,18 @@ namespace JWTLoginAuthenticationAuthorization.Controllers
             }
 
             return NotFound("user not found");
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("register")]
+        public IActionResult Register([FromBody]UserRegistrationRequest userRegistrationRequest)
+        {
+           if(_userService.AddUser(userRegistrationRequest.User,userRegistrationRequest.userContact))
+           {
+            return Ok();
+
+           }
+            return BadRequest("unable to create user");
         }
 
         string GenerateJwtKey()

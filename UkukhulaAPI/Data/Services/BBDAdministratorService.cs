@@ -36,9 +36,6 @@ namespace UkukhulaAPI.Data.Services
                 return false;
             }
 
-           
-
-
             var _newBudget = _context.YearlyBursaryDetails.FirstOrDefault(e => e.BursaryDetailsId == DateTime.Now.Year);
             if (_newBudget == null)
             {
