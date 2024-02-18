@@ -18,7 +18,7 @@ public class RaceController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetUContacts()
+    public IActionResult GetRaces()
     {
      
         var races = _ukukhulaContext.Races.ToList();

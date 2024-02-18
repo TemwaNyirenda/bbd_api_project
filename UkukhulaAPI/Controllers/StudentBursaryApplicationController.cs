@@ -18,7 +18,7 @@ public class StudentBursaryApplicationController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetUContacts()
+    public IActionResult GetStudentBursaries()
     {
      
         var studentBursaryApplication = _ukukhulaContext.StudentBursaryApplications.ToList();

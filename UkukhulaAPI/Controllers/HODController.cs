@@ -18,7 +18,7 @@ public class HODController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetUContacts()
+    public IActionResult GetHODs()
     {
      
         var headOfDepartments = _ukukhulaContext.HeadOfDepartments.ToList();

@@ -18,7 +18,7 @@ public class DepartmentController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetUContacts()
+    public IActionResult GetDepartments()
     {
      
         var departments = _ukukhulaContext.Departments.ToList();

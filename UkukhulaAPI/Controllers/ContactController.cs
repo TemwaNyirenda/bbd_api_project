@@ -1,24 +1,20 @@
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using UkukhulaAPI.Data;
-
-
-// ...
 
 [ApiController]
 [Route("[controller]")]
-public class ContactController : ControllerBase
+public class ContactsController : ControllerBase
 {
     private readonly UkukhulaContext _ukukhulaContext;
 
-    public ContactController(UkukhulaContext ukukhulaContext)
+    public ContactsController(UkukhulaContext ukukhulaContext)
     {
         _ukukhulaContext = ukukhulaContext;
     }
 
     [HttpGet]
-    public IActionResult GetUContacts()
+    public IActionResult GetContacts()
     {
      
         var contacts = _ukukhulaContext.Contacts.ToList();
