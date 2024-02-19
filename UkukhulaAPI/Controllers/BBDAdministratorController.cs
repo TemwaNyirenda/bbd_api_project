@@ -15,7 +15,7 @@ namespace UkukhulaAPI.Controllers
         public Bbdadministrator(BbdadministratorService service){
             _service = service;
         }
-        [Authorize(Roles ="Admin")]
+        // [Authorize(Roles ="Admin")]
         [HttpPost]
         [Route("bbd-admin/fund")]
         public IActionResult allocateFunding(vFunding fund)
