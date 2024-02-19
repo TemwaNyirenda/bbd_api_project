@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,7 @@ namespace UkukhulaAPI.Controllers
         }
 
         // GET: api/Applications
+        [Authorize(Roles ="Admin")]
         [HttpGet]
         public ActionResult<ViewStudentApplication> GetStudentBursaryApplications()
         {
@@ -43,7 +45,7 @@ namespace UkukhulaAPI.Controllers
                 studentApplication.ApplicationStatus.Status = StudentApp.Status.Status;
                 vStudents.Add(studentApplication);
             }
-
+          
             return Ok(vStudents);
         }
 

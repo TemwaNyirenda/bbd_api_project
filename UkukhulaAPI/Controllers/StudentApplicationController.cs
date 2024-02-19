@@ -24,6 +24,7 @@ public class StudentApplicationController : ControllerBase
         _service = service;
     }
 
+    
     [HttpPost]
     [Route("new/student-application")]
     public IActionResult insertStudentApplication([FromBody] AddStudentApplicationRequest addStudentApplicationRequest)

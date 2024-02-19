@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UkukhulaAPI.Data;
 using UkukhulaAPI.Data.Models.ViewModels;
@@ -14,6 +15,7 @@ namespace UkukhulaAPI.Controllers
         public Bbdadministrator(BbdadministratorService service){
             _service = service;
         }
+        [Authorize(Roles ="Admin")]
         [HttpPost]
         [Route("bbd-admin/fund")]
         public IActionResult allocateFunding(vFunding fund)

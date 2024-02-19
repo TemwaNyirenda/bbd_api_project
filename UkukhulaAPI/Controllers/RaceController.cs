@@ -8,6 +8,7 @@ using UkukhulaAPI.Data;
 
 [ApiController]
 [Route("[controller]")]
+
 public class RaceController : ControllerBase
 {
     private readonly UkukhulaContext _ukukhulaContext;

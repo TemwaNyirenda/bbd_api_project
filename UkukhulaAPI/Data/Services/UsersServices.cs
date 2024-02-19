@@ -4,7 +4,7 @@ using UkukhulaAPI.Data.Models.View;
 
 namespace UkukhulaAPI.Data.Services;
 
-public class UsersService : IDisposable
+public class UsersService 
 {
     private readonly UkukhulaContext _context;
     public UsersService(UkukhulaContext context)
@@ -52,10 +52,10 @@ public class UsersService : IDisposable
 
     }
 
-    public void Dispose()
-    {
-        _context.Dispose();
-    }
+    // public void Dispose()
+    // {
+    //     _context.Dispose();
+    // }
 
     public LoginVm findUser(string username)
     {
@@ -74,20 +74,31 @@ public class UsersService : IDisposable
             }
 
         }
-
-        //  public class LoginRequest
-        // {
-        //     public string Username { get; set; }
-        //     public string Password { get; set; }
-        // }
-        //  public class ApplicationUser: IdentityUser
-        // {
-        // }
-        //  public static class UserRoles
-        // {
-        //     public const string Admin = "Admin";
-        //     public const string User = "User";
-        // }
-
     }
+
+   public string FindUserRole(LoginVm currentUsern)
+{
+    var _context = new UkukhulaContext();
+    var user = _context.Users.FirstOrDefault(e => e.Idnumber == currentUsern.Username);
+
+    if (user != null)
+    {
+        var isAdmin = _context.Bbdadministrators.Any(a => a.UserId == user.UserId);
+
+        if (isAdmin)
+        {
+            return "Admin";
+        }
+
+        var isHod = _context.HeadOfDepartments.Any(h => h.UserId == user.UserId);
+
+        if (isHod)
+        {
+            return "HOD";
+        }
+        return "User";
+    }
+    return null;
+}
+
 }

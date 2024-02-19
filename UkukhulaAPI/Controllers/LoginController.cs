@@ -89,13 +89,14 @@ namespace JWTLoginAuthenticationAuthorization.Controllers
         private LoginVm Authenticate(LoginVm userLogin)
         {
             var currentUsern = _userService.findUser(userLogin.Username);
+            var userRole = _userService.FindUserRole(currentUsern);
             var password = "12345";
             // var currentUser = UserConstants.Users.FirstOrDefault(x => x.Username.ToLower() ==
             //     userLogin.Username.ToLower() && x.Password == userLogin.Password);
             if (currentUsern != null)
             {
                 currentUsern.Password = password;
-                currentUsern.Role = "Admin";
+                currentUsern.Role = userRole;
                 return currentUsern;
             }
             return null;
